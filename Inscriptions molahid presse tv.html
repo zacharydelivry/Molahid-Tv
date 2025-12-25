@@ -15,7 +15,7 @@
     }
     a{text-decoration:none;}
 
-    /* === HERO === */
+    /* HERO */
     .hero{
       display:flex;
       flex-direction:column;
@@ -145,7 +145,7 @@
       line-height:1.7;
     }
 
-    /* === DETAILS === */
+    /* DETAILS */
     #details{
       direction:rtl;
       font-family:'Cairo','Tajawal',system-ui,sans-serif;
@@ -190,7 +190,7 @@
       line-height:1.7;
     }
 
-    /* === FORM === */
+    /* FORM */
     #formSection{
       direction:rtl;
       font-family:'Cairo','Tajawal',system-ui,sans-serif;
@@ -371,13 +371,13 @@
   <div class="form-wrapper">
     <h2>استمارة الانخراط كمراسل/ة لدى <span style="color:#00c2ff;">الملاحظ TV</span></h2>
     <p>
-      المرجو ملء المعطيات بدقة، وإرفاق السيرة الذاتية إن وُجدت. فريق التحرير سيتواصل معك عبر
-      واتساب أو البريد الإلكتروني بعد دراسة ملفك.
+      المرجو ملء المعطيات بدقة، وإرفاق السيرة الذاتية في رسالة واتساب بعد الإرسال. فريق التحرير سيتواصل معك
+      عبر واتساب أو البريد الإلكتروني بعد دراسة ملفك.
     </p>
 
     <form id="molahidForm">
       <div class="success-box" id="successMolahid">
-        ✅ تم إرسال طلبك بنجاح. سنتواصل معك قريباً بعد مراجعة ملفك.
+        ✅ تم إرسال طلبك إلى واتساب. يرجى إرفاق الـCV في نفس المحادثة.
       </div>
 
       <div class="form-group">
@@ -455,11 +455,10 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label">السيرة الذاتية (CV) - اختياري لكن مفضّل</label>
-        <div class="cv-drop" id="cvDrop">
-          <input id="cv" name="cv" type="file" accept=".pdf,.doc,.docx" style="display:none;">
-          <span id="cvLabel" style="font-size:12px;color:#cfe0ff;">
-            اسحب ملف السيرة الذاتية هنا أو اضغط للاختيار (PDF / DOC / DOCX)
+        <label class="form-label">السيرة الذاتية (CV)</label>
+        <div class="cv-drop">
+          <span id="cvInfo" style="font-size:12px;color:#cfe0ff;">
+            بعد الضغط على إرسال، سيتم فتح واتساب تلقائياً، المرجو إرفاق ملف الـCV في نفس المحادثة.
           </span>
         </div>
       </div>
@@ -472,30 +471,16 @@
         </label>
       </div>
 
-      <button type="submit" class="submit-btn">إرسال طلب الانخراط</button>
+      <button type="submit" class="submit-btn">إرسال الطلب عبر واتساب</button>
     </form>
   </div>
 </section>
 
 <script>
-  // اختيار CV
-  const cvInput = document.getElementById('cv');
-  const cvLabel = document.getElementById('cvLabel');
-  const cvDrop  = document.getElementById('cvDrop');
-
-  cvDrop.addEventListener('click', () => cvInput.click());
-  cvInput.addEventListener('change', () => {
-    if (cvInput.files.length > 0) {
-      cvLabel.textContent = 'تم اختيار الملف: ' + cvInput.files[0].name;
-    } else {
-      cvLabel.textContent = 'اسحب ملف السيرة الذاتية هنا أو اضغط للاختيار (PDF / DOC / DOCX)';
-    }
-  });
-
   const form = document.getElementById('molahidForm');
   const successBox = document.getElementById('successMolahid');
 
-  form.addEventListener('submit', async function(e){
+  form.addEventListener('submit', function(e){
     e.preventDefault();
 
     const fullname = document.getElementById('fullname').value;
@@ -518,34 +503,16 @@
 ✍️ *الخبرة في الصحافة أو نقل الأخبار:*
 ${exp}
 
+📎 *ملاحظة:* سأرفق السيرة الذاتية (CV) في هذه المحادثة على واتساب بعد إرسال هذه الرسالة.
+
 —
 تم إرسال هذا الطلب عبر صفحة الانخراط الرسمية للملاحظ TV.`;
 
     const waUrl = 'https://wa.me/212651379376?text=' + encodeURIComponent(waText);
 
-    try{
-      await fetch('https://formsubmit.co/Groupeujm@gmail.com', {
-        method:'POST',
-        headers:{'Content-Type':'application/x-www-form-urlencoded'},
-        body:new URLSearchParams({
-          'الاسم الكامل': fullname,
-          'الهاتف / واتساب': phone,
-          'البريد الإلكتروني': email,
-          'العمر': age,
-          'المستوى الدراسي': study,
-          'المدينة / الجهة': city,
-          'الخبرة': exp,
-          '_subject': '📰 طلب انخراط كمراسل - الملاحظ TV'
-        })
-      });
-    }catch(err){
-      console.log('تعذر الإرسال إلى البريد، يلزم إعداد باك-إند فعلي.');
-    }
-
     successBox.style.display = 'block';
-    setTimeout(()=>{ window.open(waUrl,'_blank'); },1200);
+    setTimeout(()=>{ window.open(waUrl,'_blank'); },1000);
     form.reset();
-    cvLabel.textContent = 'اسحب ملف السيرة الذاتية هنا أو اضغط للاختيار (PDF / DOC / DOCX)';
     setTimeout(()=>{ successBox.style.display = 'none'; },2000);
   });
 </script>
