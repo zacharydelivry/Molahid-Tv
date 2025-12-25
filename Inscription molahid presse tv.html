@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الملاحظ TV - الانخراط كمراسل</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:'Cairo','Tajawal',system-ui,sans-serif;
+      background:radial-gradient(circle at top,#0a3d91 0%,#021740 55%,#000814 100%);
+      color:#fff;
+      min-height:100vh;
+    }
+    .hero{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:60px 20px;
+      position:relative;
+      overflow:hidden;
+    }
+    /* توهجات وخلفية ضوئية */
+    .hero::before,
+    .hero::after{
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      filter:blur(60px);
+      opacity:0.45;
+      pointer-events:none;
+      mix-blend-mode:screen;
+    }
+    .hero::before{
+      width:420px;height:420px;
+      background:rgba(0,160,255,0.9);
+      top:-120px;left:-80px;
+    }
+    .hero::after{
+      width:380px;height:380px;
+      background:rgba(0,90,210,0.9);
+      bottom:-140px;right:-60px;
+    }
+    .hero-card{
+      position:relative;
+      max-width:640px;
+      padding:32px 24px 28px;
+      background:linear-gradient(145deg,rgba(3,26,77,0.95),rgba(4,58,138,0.96));
+      border-radius:18px;
+      box-shadow:
+        0 24px 60px rgba(0,0,0,0.7),
+        0 0 38px rgba(0,180,255,0.55);
+      border:1px solid rgba(135,195,255,0.35);
+      backdrop-filter:blur(12px);
+    }
+    .logo-wrap{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+    }
+    .logo-wrap img{
+      width:86px;
+      height:auto;
+      filter:drop-shadow(0 0 22px rgba(255,255,255,0.7));
+    }
+    .logo-text{
+      font-weight:700;
+      letter-spacing:2px;
+      font-size:18px;
+    }
+    .hero-title{
+      font-size:26px;
+      font-weight:800;
+      margin-bottom:10px;
+      line-height:1.5;
+    }
+    .hero-title span{
+      color:#00c2ff;
+    }
+    .hero-sub{
+      font-size:15px;
+      color:#dbe8ff;
+      margin-bottom:18px;
+      line-height:1.8;
+    }
+    .hero-sub-strong{
+      font-weight:700;
+      color:#ffffff;
+    }
+    .pill{
+      display:inline-block;
+      padding:4px 14px;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:1px;
+      background:rgba(0,184,255,0.18);
+      border:1px solid rgba(123,208,255,0.7);
+      color:#e5f5ff;
+      margin-bottom:12px;
+    }
+    .hero-badge{
+      font-size:13px;
+      margin-top:6px;
+      color:#9fd4ff;
+    }
+    .cta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top:18px;
+    }
+    .cta-btn{
+      border:none;
+      cursor:pointer;
+      border-radius:999px;
+      padding:10px 24px;
+      font-size:14px;
+      font-weight:700;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:all .25s ease;
+      text-decoration:none;
+    }
+    .cta-primary{
+      background:linear-gradient(135deg,#00c2ff,#3be0ff);
+      color:#00132a;
+      box-shadow:0 14px 35px rgba(0,185,255,0.5);
+    }
+    .cta-primary:hover{
+      transform:translateY(-2px) scale(1.02);
+      box-shadow:0 18px 45px rgba(0,215,255,0.65);
+    }
+    .cta-secondary{
+      background:transparent;
+      color:#e5f1ff;
+      border:1px solid rgba(158,206,255,0.6);
+    }
+    .cta-secondary:hover{
+      background:rgba(4,91,188,0.7);
+    }
+    .hero-meta{
+      margin-top:14px;
+      font-size:12px;
+      color:#9ab8ff;
+      line-height:1.7;
+    }
+    @media(max-width:600px){
+      .hero-card{padding:26px 18px 24px;}
+      .hero-title{font-size:22px;}
+      .hero-sub{font-size:14px;}
+    }
+  </style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero-card">
+    <div class="logo-wrap">
+      <!-- استبدل src برابط شعار الملاحظ TV الحقيقي -->
+      <img src="LOGO-ALMOLAHID.png" alt="الملاحظ TV">
+      <div class="logo-text">الملاحظ TV</div>
+    </div>
+    <div class="pill">فرصة مهنية للمخبرين و مراسلي الأخبار عبر المغرب</div>
+    <h1 class="hero-title">
+      مطلوب <span>مراسلي أخبار ميدانيين</span><br>من جميع المدن المغربية
+    </h1>
+    <p class="hero-sub">
+      الملاحظ TV كتبحث على مراسلين ومراسلات من كل المدن والأقاليم، الكبيرة والصغيرة، 
+      باش ينقلو الخبر <span class="hero-sub-strong">بمصداقية واحترافية</span> ويكونو صوت الأحياء، 
+      الدواوير والقرى في الإعلام الرقمي.
+    </p>
+    <p class="hero-badge">إذا كنت كتشوف راسك مخبر ميداني وقريب من نبض الشارع… هادي فرصتك تبان.</p>
+
+    <div class="cta-row">
+      <a href="#form" class="cta-btn cta-primary">
+        انخرط الآن كمراسل
+      </a>
+      <a href="#details" class="cta-btn cta-secondary">
+        شروط المشاركة ومزيد من التفاصيل
+      </a>
+    </div>
+
+    <div class="hero-meta">
+      تغطية شاملة لكل جهات المغرب │ الأفضلية لأصحاب التجربة أو الحماس الكبير للميدان الصحفي
+    </div>
+  </div>
+</section>
+</body>
+</html>
