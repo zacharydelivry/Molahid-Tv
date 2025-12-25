@@ -1,447 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <title>الملاحظ TV - الانخراط كمراسل</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{
-      font-family:'Cairo','Tajawal',system-ui,sans-serif;
-      background:radial-gradient(circle at top,#0a3d91 0%,#021740 55%,#000814 100%);
-      color:#fff;
-      min-height:100vh;
-    }
-    /* HERO */
-    .hero{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:60px 20px;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero::before,
-    .hero::after{
-      content:"";
-      position:absolute;
-      border-radius:50%;
-      filter:blur(60px);
-      opacity:0.45;
-      pointer-events:none;
-      mix-blend-mode:screen;
-    }
-    .hero::before{
-      width:420px;height:420px;
-      background:rgba(0,160,255,0.9);
-      top:-120px;left:-80px;
-    }
-    .hero::after{
-      width:380px;height:380px;
-      background:rgba(0,90,210,0.9);
-      bottom:-140px;right:-60px;
-    }
-    .hero-card{
-      position:relative;
-      max-width:640px;
-      padding:32px 24px 28px;
-      background:linear-gradient(145deg,rgba(3,26,77,0.95),rgba(4,58,138,0.96));
-      border-radius:18px;
-      box-shadow:
-        0 24px 60px rgba(0,0,0,0.7),
-        0 0 38px rgba(0,180,255,0.55);
-      border:1px solid rgba(135,195,255,0.35);
-      backdrop-filter:blur(12px);
-    }
-    .logo-wrap{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:10px;
-      margin-bottom:18px;
-    }
-    .logo-wrap img{
-      width:86px;
-      height:auto;
-      filter:drop-shadow(0 0 22px rgba(255,255,255,0.7));
-    }
-    .logo-text{
-      font-weight:700;
-      letter-spacing:2px;
-      font-size:18px;
-    }
-    .hero-title{
-      font-size:26px;
-      font-weight:800;
-      margin-bottom:10px;
-      line-height:1.5;
-    }
-    .hero-title span{
-      color:#00c2ff;
-    }
-    .hero-sub{
-      font-size:15px;
-      color:#dbe8ff;
-      margin-bottom:18px;
-      line-height:1.8;
-    }
-    .hero-sub-strong{
-      font-weight:700;
-      color:#ffffff;
-    }
-    .pill{
-      display:inline-block;
-      padding:4px 14px;
-      border-radius:999px;
-      font-size:12px;
-      letter-spacing:1px;
-      background:rgba(0,184,255,0.18);
-      border:1px solid rgba(123,208,255,0.7);
-      color:#e5f5ff;
-      margin-bottom:12px;
-    }
-    .hero-badge{
-      font-size:13px;
-      margin-top:6px;
-      color:#9fd4ff;
-    }
-    .cta-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:center;
-      margin-top:18px;
-    }
-    .cta-btn{
-      border:none;
-      cursor:pointer;
-      border-radius:999px;
-      padding:10px 24px;
-      font-size:14px;
-      font-weight:700;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      transition:all .25s ease;
-      text-decoration:none;
-    }
-    .cta-primary{
-      background:linear-gradient(135deg,#00c2ff,#3be0ff);
-      color:#00132a;
-      box-shadow:0 14px 35px rgba(0,185,255,0.5);
-    }
-    .cta-primary:hover{
-      transform:translateY(-2px) scale(1.02);
-      box-shadow:0 18px 45px rgba(0,215,255,0.65);
-    }
-    .cta-secondary{
-      background:transparent;
-      color:#e5f1ff;
-      border:1px solid rgba(158,206,255,0.6);
-    }
-    .cta-secondary:hover{
-      background:rgba(4,91,188,0.7);
-    }
-    .hero-meta{
-      margin-top:14px;
-      font-size:12px;
-      color:#9ab8ff;
-      line-height:1.7;
-    }
-    @media(max-width:600px){
-      .hero-card{padding:26px 18px 24px;}
-      .hero-title{font-size:22px;}
-      .hero-sub{font-size:14px;}
-    }
-
-    /* DETAILS + FORM */
-    #details{
-      direction:rtl;
-      font-family:'Cairo','Tajawal',system-ui,sans-serif;
-      background:#021740;
-      color:#eef5ff;
-      padding:40px 20px 50px;
-    }
-    #form-section{
-      direction:rtl;
-      font-family:'Cairo','Tajawal',system-ui,sans-serif;
-      background:radial-gradient(circle at top,#063d9f 0%,#02112f 55%,#000814 100%);
-      padding:50px 20px 70px;
-      color:#fff;
-    }
-  </style>
-</head>
-<body>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-card">
-    <div class="logo-wrap">
-      <!-- استبدل src برابط شعار الملاحظ TV الحقيقي -->
-      <img src="LOGO-ALMOLAHID.png" alt="الملاحظ TV">
-      <div class="logo-text">الملاحظ TV</div>
-    </div>
-    <div class="pill">فرصة مهنية للمخبرين ومراسلي الأخبار عبر المغرب</div>
-    <h1 class="hero-title">
-      مطلوب <span>مراسلي أخبار ميدانيين</span><br>من جميع المدن المغربية
-    </h1>
-    <p class="hero-sub">
-      الملاحظ TV كتبحث على مراسلين ومراسلات من كل المدن والأقاليم، الكبيرة والصغيرة،
-      باش ينقلو الخبر <span class="hero-sub-strong">بمصداقية واحترافية</span>
-      ويكونو صوت الأحياء، الدواوير والقرى في الإعلام الرقمي.
-    </p>
-    <p class="hero-badge">إذا كنت كتشوف راسك مخبر ميداني وقريب من نبض الشارع… هادي فرصتك تبان.</p>
-
-    <div class="cta-row">
-      <a href="#form-section" class="cta-btn cta-primary">انخرط الآن كمراسل</a>
-      <a href="#details" class="cta-btn cta-secondary">شروط المشاركة ومزيد من التفاصيل</a>
-    </div>
-
-    <div class="hero-meta">
-      تغطية شاملة لكل جهات المغرب │ الأفضلية لأصحاب التجربة أو الحماس الكبير للميدان الصحفي
-    </div>
-  </div>
-</section>
-
-<!-- DETAILS -->
-<section id="details">
-  <div style="max-width:1000px;margin:0 auto;display:grid;gap:24px;">
-    <div style="text-align:center;">
-      <h2 style="font-size:24px;font-weight:800;margin-bottom:10px;">
-        لماذا الانخراط كمراسل مع <span style="color:#00c2ff;">الملاحظ TV؟</span>
-      </h2>
-      <p style="font-size:14px;color:#c6ddff;line-height:1.9;">
-        إذا كنت قريب من الأحداث فمدينتك، من الأسواق، الأحياء، الدواوير، الإدارات والشارع…
-        تقدر تولّي <strong>عين الملاحظ TV فالميدان</strong> وتنقل الخبر بصوتك وصورتك للجمهور.
-      </p>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:10px;">
-      <div style="background:radial-gradient(circle at top,#04235c,#020b25);border-radius:14px;padding:16px 14px;border:1px solid rgba(118,175,255,.35);box-shadow:0 10px 30px rgba(0,0,0,.55);">
-        <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;color:#6fd3ff;">✅ نقل الخبر بمصداقية</h3>
-        <p style="font-size:13px;color:#d3e5ff;line-height:1.7;">
-          نعتمد على مراسلين ميدانيين ينقلو الوقائع كما هي، بدون تهويل أو تضخيم، مع احترام أخلاقيات الصحافة.
-        </p>
-      </div>
-
-      <div style="background:radial-gradient(circle at top,#04235c,#020b25);border-radius:14px;padding:16px 14px;border:1px solid rgba(118,175,255,.35);box-shadow:0 10px 30px rgba(0,0,0,.55);">
-        <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;color:#6fd3ff;">🎥 مساحة للظهور الإعلامي</h3>
-        <p style="font-size:13px;color:#d3e5ff;line-height:1.7;">
-          تقاريرك وفيديوهاتك يمكن تنشر على منصات الملاحظ TV وتعرّف بك كصوت لمنطقتك وكمخبر صحفي.
-        </p>
-      </div>
-
-      <div style="background:radial-gradient(circle at top,#04235c,#020b25);border-radius:14px;padding:16px 14px;border:1px solid rgba(118,175,255,.35);box-shadow:0 10px 30px rgba(0,0,0,.55);">
-        <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;color:#6fd3ff;">🌍 من جميع المدن والقرى</h3>
-        <p style="font-size:13px;color:#d3e5ff;line-height:1.7;">
-          نستقبل الترشيحات من كل جهات المغرب: الشمال، الجنوب، الشرق، الغرب، المدن الكبرى والقرى الصغيرة.
-        </p>
-      </div>
-
-      <div style="background:radial-gradient(circle at top,#04235c,#020b25);border-radius:14px;padding:16px 14px;border:1px solid rgba(118,175,255,.35);box-shadow:0 10px 30px rgba(0,0,0,.55);">
-        <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;color:#6fd3ff;">📝 أولوية لأصحاب الجدية</h3>
-        <p style="font-size:13px;color:#d3e5ff;line-height:1.7;">
-          نبحث عن أشخاص ملتزمين، يحترمون الوقت، ويتوفرون على حس مسؤولية ورغبة حقيقية في خدمة المعلومة.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FORM -->
-<section id="form-section">
-  <div style="max-width:780px;margin:0 auto;background:rgba(1,10,32,0.96);border-radius:18px;padding:26px 20px 24px;box-shadow:0 22px 60px rgba(0,0,0,.8),0 0 40px rgba(0,188,255,.35);border:1px solid rgba(135,195,255,.4);backdrop-filter:blur(14px);">
-    <h2 style="font-size:22px;font-weight:800;text-align:center;margin-bottom:8px;">
-      استمارة الانخراط كمراسل/ة لدى <span style="color:#00c2ff;">الملاحظ TV</span>
-    </h2>
-    <p style="font-size:13px;text-align:center;color:#cfe4ff;margin-bottom:18px;line-height:1.8;">
-      المرجو ملء المعطيات بدقة، وإرفاق السيرة الذاتية إن وُجدت. فريق التحرير سيتواصل معك عبر
-      واتساب أو البريد الإلكتروني بعد دراسة ملفك.
-    </p>
-
-    <form id="molahidForm">
-      <div style="margin-bottom:14px;">
-        <label for="fullname" style="display:block;font-size:13px;margin-bottom:4px;font-weight:600;">الاسم الكامل *</label>
-        <input id="fullname" name="fullname" type="text" required
-          style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid #1e3b70;font-size:13px;font-family:'Cairo','Tajawal',sans-serif;">
-      </div>
-
-      <div style="margin-bottom:14px;">
-        <label for="phone" style="display:block;font-size:13px;margin-bottom:4px;font-weight:600;">رقم الهاتف / واتساب *</label>
-        <input id="phone" name="phone" type="tel" required placeholder="مثال: 06 51 37 93 76"
-          style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid #1e3b70;font-size:13px;font-family:'Cairo','Tajawal',sans-serif;">
-      </div>
-
-      <div style="margin-bottom:14px;">
-        <label for="email" style="display:block;font-size:13px;margin-bottom:4px;font-weight:600;">البريد الإلكتروني *</label>
-        <input id="email" name="email" type="email" required placeholder="example@email.com"
-          style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid #1e3b70;font-size:13px;font-family:'Cairo','Tajawal',sans-serif;">
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
-        <div>
-          <label for="age" style="display:block;font-size:13px;margin-bottom:4px;font-weight:600;">العمر *</label>
-          <input id="age" name="age" type="number" min="16" max="70" required
-            style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid #1e3b70;font-size:13px;">
-        </div>
-        <div>
-          <label for="study" style="display:block;font-size:13px;margin-bottom:4px;font-weight:600;">المستوى الدراسي *</label>
-          <select id="study" name="study" required
-            style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid #1e3b70;font-size:13px;background:#020b25;color:#e7f0ff;">
-            <option value="">اختر المستوى</option>
-            <option value="ثانوي">ثانوي</option>
-            <option value="باكالوريا">باكالوريا</option>
-            <option value="طالب جامعي">طالب جامعي</option>
-            <option value="إجازة">إجازة</option>
-            <option value="ماستر">ماستر</option>
-            <option value="دكتوراه">دكتوراه</option>
-          </select>
-        </div>
-      </div>
-
-      <div style="margin-bottom:14px;">
-        <label for="city" style="display:block;font-size:13px;margin-bottom:4px;font-weight:600;">المدينة / الجهة *</label>
-        <select id="city" name="city" required
-          style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid #1e3b70;font-size:13px;background:#020b25;color:#e7f0ff;">
-          <option value="">اختر المدينة أو الجهة</option>
-          <optgroup label="المدن الكبرى">
-            <option>الرباط</option>
-            <option>الدار البيضاء</option>
-            <option>طنجة</option>
-            <option>فاس</option>
-            <option>مراكش</option>
-            <option>أكادير</option>
-            <option>وجدة</option>
-            <option>العيون</option>
-          </optgroup>
-          <optgroup label="مدن وأقاليم أخرى">
-            <option>تطوان</option>
-            <option>الحسيمة</option>
-            <option>القنيطرة</option>
-            <option>تمارة</option>
-            <option>سلا</option>
-            <option>الناظور</option>
-            <option>بركان</option>
-            <option>الرشيدية</option>
-            <option>بني ملال</option>
-            <option>خريبكة</option>
-            <option>الجديدة</option>
-            <option>آسفي</option>
-            <option>تزنيت</option>
-            <option>الداخلة</option>
-            <option>مدن أخرى بالمغرب</option>
-          </optgroup>
-        </select>
-      </div>
-
-      <div style="margin-bottom:14px;">
-        <label for="experience" style="display:block;font-size:13px;margin-bottom:4px;font-weight:600;">هل لديك تجربة سابقة في الصحافة أو نقل الأخبار؟</label>
-        <textarea id="experience" name="experience" rows="3"
-          placeholder="مثال: تجربة مع موقع إخباري، صفحة فيسبوك، إذاعة محلية، أو فقط شغف قوي بالمجال..."
-          style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid #1e3b70;font-size:13px;font-family:'Cairo','Tajawal',sans-serif;background:#020b25;color:#e7f0ff;"></textarea>
-      </div>
-
-      <div style="margin-bottom:14px;">
-        <label style="display:block;font-size:13px;margin-bottom:4px;font-weight:600;">السيرة الذاتية (CV) - اختياري لكن مفضّل</label>
-        <div style="border:1px dashed rgba(132,185,255,.8);border-radius:10px;padding:14px 10px;text-align:center;background:rgba(4,38,94,.7);cursor:pointer;">
-          <input id="cv" name="cv" type="file" accept=".pdf,.doc,.docx" style="display:none;">
-          <span id="cvLabel" style="font-size:12px;color:#cfe0ff;">
-            اسحب ملف السيرة الذاتية هنا أو اضغط للاختيار (PDF / DOC / DOCX)
-          </span>
-        </div>
-      </div>
-
-      <div style="display:flex;align-items:flex-start;gap:6px;margin-top:6px;margin-bottom:14px;font-size:11px;color:#c7dbff;">
-        <input id="consent" type="checkbox" required style="margin-top:3px;">
-        <label for="consent">
-          أوافق على أن يقوم فريق الملاحظ TV بالتواصل معي عبر واتساب أو الهاتف أو البريد الإلكتروني
-          بخصوص فرص التعاون كمراسل ميداني.
-        </label>
-      </div>
-
-      <div id="successMolahid" style="display:none;background:#0a8f3c;padding:10px;border-radius:8px;font-size:12px;text-align:center;margin-bottom:8px;">
-        ✅ تم إرسال طلبك بنجاح. سنتواصل معك قريباً بعد مراجعة ملفك.
-      </div>
-
-      <button type="submit" style="width:100%;margin-top:4px;padding:11px 0;border:none;border-radius:999px;background:linear-gradient(135deg,#00c2ff,#38e0ff);color:#00111f;font-weight:800;font-size:14px;cursor:pointer;box-shadow:0 16px 40px rgba(0,199,255,.65);transition:all .2s ease;">
-        إرسال طلب الانخراط
-      </button>
-    </form>
-  </div>
-</section>
-
-<script>
-  const cvInput = document.getElementById('cv');
-  const cvLabel = document.getElementById('cvLabel');
-  cvLabel.parentElement.addEventListener('click', () => cvInput.click());
-  cvInput.addEventListener('change', () => {
-    if (cvInput.files.length > 0) {
-      cvLabel.textContent = 'تم اختيار الملف: ' + cvInput.files[0].name;
-    } else {
-      cvLabel.textContent = 'اسحب ملف السيرة الذاتية هنا أو اضغط للاختيار (PDF / DOC / DOCX)';
-    }
-  });
-
-  const form = document.getElementById('molahidForm');
-  const successBox = document.getElementById('successMolahid');
-
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-
-    const fullname = document.getElementById('fullname').value;
-    const phone    = document.getElementById('phone').value;
-    const email    = document.getElementById('email').value;
-    const age      = document.getElementById('age').value;
-    const study    = document.getElementById('study').value;
-    const city     = document.getElementById('city').value;
-    const exp      = document.getElementById('experience').value || 'لم يتم توضيح الخبرة';
-
-    const waText =
-`📰 *طلب الانخراط كمراسل - الملاحظ TV*
-
-👤 *الاسم الكامل:* ${fullname}
-📱 *الهاتف / واتساب:* ${phone}
-📧 *البريد الإلكتروني:* ${email}
-🎂 *العمر:* ${age}
-🎓 *المستوى الدراسي:* ${study}
-📍 *المدينة / الجهة:* ${city}
-✍️ *الخبرة في الصحافة أو نقل الأخبار:*
-${exp}
-
-—
-تم إرسال هذا الطلب عبر صفحة الانخراط الرسمية للملاحظ TV.`;
-
-    const waUrl = 'https://wa.me/212651379376?text=' + encodeURIComponent(waText);
-
-    try{
-      await fetch('https://formsubmit.co/Groupeujm@gmail.com', {
-        method:'POST',
-        headers:{'Content-Type':'application/x-www-form-urlencoded'},
-        body:new URLSearchParams({
-          'الاسم الكامل': fullname,
-          'الهاتف / واتساب': phone,
-          'البريد الإلكتروني': email,
-          'العمر': age,
-          'المستوى الدراسي': study,
-          'المدينة / الجهة': city,
-          'الخبرة': exp,
-          '_subject': '📰 طلب انخراط كمراسل - الملاحظ TV'
-        })
-      });
-    }catch(err){
-      console.log('تعذر الإرسال إلى البريد، يلزم إعداد باك-إند فعلي.');
-    }
-
-    successBox.style.display = 'block';
-    setTimeout(()=>{ window.open(waUrl,'_blank'); },1200);
-    form.reset();
-    cvLabel.textContent = 'اسحب ملف السيرة الذاتية هنا أو اضغط للاختيار (PDF / DOC / DOCX)';
-    setTimeout(()=>{ successBox.style.display = 'none'; },2000);
-  });
-</script>
-
-</body>
-</html>
